@@ -1,5 +1,5 @@
 import { useTheme } from "next-themes";
-import { Toaster as Sonner, toast } from "sonner";
+import { Toaster as Sonner } from "sonner";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
@@ -10,13 +10,25 @@ const Toaster = ({ ...props }: ToasterProps) => {
     <Sonner
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
+      position="top-center"
+      offset={64}
+      duration={3500}
+      richColors
       toastOptions={{
         classNames: {
           toast:
-            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
-          description: "group-[.toast]:text-muted-foreground",
-          actionButton: "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
-          cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+            // Base
+            "group toast group-[.toaster]:shadow-lg group-[.toaster]:border-border text-white " +
+            // Variant colors
+            "[&[data-type=success]]:bg-emerald-500 [&[data-type=success]]:text-white " +
+            "[&[data-type=error]]:bg-red-500 [&[data-type=error]]:text-white " +
+            // Default/fallback when no type provided
+            "group-[.toaster]:bg-background group-[.toaster]:text-foreground",
+          description: "group-[.toast]:text-white/90",
+          actionButton:
+            "group-[.toast]:bg-white/20 group-[.toast]:text-white hover:group-[.toast]:bg-white/30",
+          cancelButton:
+            "group-[.toast]:bg-white/10 group-[.toast]:text-white hover:group-[.toast]:bg-white/20",
         },
       }}
       {...props}
@@ -24,4 +36,4 @@ const Toaster = ({ ...props }: ToasterProps) => {
   );
 };
 
-export { Toaster, toast };
+export { Toaster };
