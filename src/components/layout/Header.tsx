@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 import { appLogo } from "@/assets/images";
 
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
+  const { theme, setTheme } = useTheme();
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
@@ -48,6 +56,19 @@ const Header = () => {
               Login Admin
             </Button>
           </Link>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="ml-2"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+            <span className="sr-only">Toggle theme</span>
+          </Button>
         </nav>
       </div>
     </header>

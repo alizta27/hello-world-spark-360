@@ -24,7 +24,7 @@ import TermsOfUse from "./pages/TermsOfUse";
 import { ReactQueryProvider, ThemeProvider } from "./providers";
 
 const App = () => (
-  <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+  <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
     <ReactQueryProvider>
       <TooltipProvider>
         <Toaster />
